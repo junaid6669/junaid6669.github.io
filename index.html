@@ -1,1 +1,9 @@
-HHello World
+<?php
+$channel_id = "UCsQLTECz1bCA56JIryaw-lA";
+$api_key = "AIzaSyBpcDzoEaxTEIl3wv-snF11hDcxJJGKTcY";
+$api_response = file_get_contents('https://www.googleapis.com/youtube/v3/channels?part=statistics&id='.$channel_id.'&fields=items/statistics/subscriberCount&key='.$api_key);
+$api_response_decoded = json_decode($api_response, true);
+
+$number = $api_response_decoded['items'][0]['statistics']['subscriberCount']; // this variable contains your total subscribers count
+echo json_encode(array('number'=>$number));
+?>
